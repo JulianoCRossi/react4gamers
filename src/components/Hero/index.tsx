@@ -1,47 +1,18 @@
-import React from 'react';
 import './index.css';
 import { TILE_SIZE, HEAD_OFFSET } from '../../settings/constants';
-import useEventListener from '@use-it/event-listener';
-
-const initialPosition = {
-    x: 15,
-    y: 15
-}
+import React from 'react';
+import useHeroMoviment from '../../hooks/useHeroMoviment';
 
 const Hero = () => {
-    const [positionState, updatePositionState] = React.useState(initialPosition);
-    const [direction, updateDirectionState] = React.useState('RIGHT');
-
-    // no Terminal, rodar "npm install @use-it/event-listener --save"
-    // e importar aqui: "import useEventListener from '@use-it/event-listener';"
-    useEventListener('keydown', (event: any) => {
-        switch (event.key) {
-            case 'ArrowLeft':
-                updatePositionState({ x: positionState.x - 1, y: positionState.y });
-                updateDirectionState("LEFT");
-                break;
-            case 'ArrowRight':
-                updatePositionState({ x: positionState.x + 1, y: positionState.y });
-                updateDirectionState("RIGHT");
-                break;
-            case 'ArrowUp':
-                updatePositionState({ x: positionState.x, y: positionState.y + 1 });
-                break;
-            case 'ArrowDown':
-                updatePositionState({ x: positionState.x, y: positionState.y - 1 });
-                break;
-            default:
-                break;
-        }
-    });
+    const { position, direction } = useHeroMoviment({x: 15, y: 15});
 
     return (        
         <div 
             style={
                 {
                     position: "absolute",
-                    bottom: TILE_SIZE * positionState.y,
-                    left: TILE_SIZE * positionState.x,
+                    bottom: TILE_SIZE * position.y,
+                    left: TILE_SIZE * position.x,
                     width: TILE_SIZE,
                     height: TILE_SIZE + HEAD_OFFSET,
                     backgroundImage: "url(./assets/HERO.png)",
