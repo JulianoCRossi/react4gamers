@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { TILE_SIZE, DEMON_TILE_SIZE } from '../../settings/constants';
+import { TILE_SIZE, DEMON_TILE_SIZE, EDirection } from '../../settings/constants';
 import useEnemyMoviment from '../../hooks/useEnemyMoviment';
 
 const Demon = () => {
@@ -18,7 +18,7 @@ const Demon = () => {
                     backgroundImage: "url(./assets/DEMON.png)",
                     backgroundRepeat: "no-repeat",
                     animation: "demon-animation .5s steps(4) infinite",
-                    transform: `scaleX(${direction === 'RIGHT' ? 1 : -1})`
+                    transform: `scaleX(${direction === EDirection.RIGHT ? 1 : -1})`
                 }                
             }
         />

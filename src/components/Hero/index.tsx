@@ -1,5 +1,5 @@
 import './index.css';
-import { TILE_SIZE, HEAD_OFFSET } from '../../settings/constants';
+import { TILE_SIZE, HEAD_OFFSET, EDirection } from '../../settings/constants';
 import React from 'react';
 import useHeroMoviment from '../../hooks/useHeroMoviment';
 
@@ -19,7 +19,8 @@ const Hero = () => {
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: `0 -${TILE_SIZE - HEAD_OFFSET}px`,
                     animation: "hero-animation .5s steps(4) infinite",
-                    transform: `scaleX(${direction === 'RIGHT' ? 1 : -1})`
+                    transform: `scaleX(${direction === EDirection.RIGHT ? 1 : -1})`,
+                    zIndex: 1
                 }                
             }
         />
